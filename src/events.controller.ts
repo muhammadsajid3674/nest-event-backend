@@ -20,8 +20,8 @@ export class EventsController {
     return this.events;
   }
   @Get(':id')
-  findOne(@Param('id') id) {
-    const event = this.events.find((event) => event.id === parseInt(id));
+  findOne(@Param('id') id: number) {
+    const event = this.events.find((event) => event.id === id);
     return event;
   }
   @Post()
@@ -35,8 +35,8 @@ export class EventsController {
     return event;
   }
   @Patch(':id')
-  update(@Param('id') id, @Body() input: UpdateEventDto) {
-    const index = this.events.findIndex((event) => event.id === parseInt(id));
+  update(@Param('id') id: number, @Body() input: UpdateEventDto) {
+    const index = this.events.findIndex((event) => event.id === id);
     this.events[index] = {
       ...this.events[index],
       ...input,
@@ -46,8 +46,8 @@ export class EventsController {
   }
   @Delete(':id')
   @HttpCode(204)
-  delete(@Param('id') id) {
-    this.events = this.events.filter((event) => event.id !== parseInt(id));
+  delete(@Param('id') id: number) {
+    this.events = this.events.filter((event) => event.id !== id);
     return this.events;
   }
 }
